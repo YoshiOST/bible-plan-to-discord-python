@@ -3,6 +3,11 @@ import http.client
 import json
 import argparse
 from datetime import datetime
+try:
+    import pytz
+    print("pytz is installed")
+except ImportError as e:
+    print("Error -> ", e)
 import pytz
 import csv
 import math
