@@ -13,6 +13,36 @@ import csv
 import math
 import re
 
+# Bible book abbreviations
+book_abbreviations = {
+    "Genesis": "GEN", "Exodus": "EXO", "Leviticus": "LEV", "Numbers": "NUM", "Deuteronomy": "DEU",
+    "Joshua": "JOS", "Judges": "JDG", "Ruth": "RUT", "1 Samuel": "1SA", "2 Samuel": "2SA",
+    "1 Kings": "1KI", "2 Kings": "2KI", "1 Chronicles": "1CH", "2 Chronicles": "2CH",
+    "Ezra": "EZR", "Nehemiah": "NEH", "Esther": "EST", "Job": "JOB", "Psalm": "PSA", "Psalms": "PSA",
+    "Proverbs": "PRO", "Ecclesiastes": "ECC", "Song of Solomon": "SNG", "Isaiah": "ISA",
+    "Jeremiah": "JER", "Lamentations": "LAM", "Ezekiel": "EZK", "Daniel": "DAN",
+    "Hosea": "HOS", "Joel": "JOL", "Amos": "AMO", "Obadiah": "OBA", "Jonah": "JON",
+    "Micah": "MIC", "Nahum": "NAM", "Habakkuk": "HAB", "Zephaniah": "ZEP", "Haggai": "HAG",
+    "Zechariah": "ZEC", "Malachi": "MAL", "Matthew": "MAT", "Mark": "MRK", "Luke": "LUK",
+    "John": "JHN", "Acts": "ACT", "Romans": "ROM", "1 Corinthians": "1CO", "2 Corinthians": "2CO",
+    "Galatians": "GAL", "Ephesians": "EPH", "Philippians": "PHP", "Colossians": "COL",
+    "1 Thessalonians": "1TH", "2 Thessalonians": "2TH", "1 Timothy": "1TI", "2 Timothy": "2TI",
+    "Titus": "TIT", "Philemon": "PHM", "Hebrews": "HEB", "James": "JAS", "1 Peter": "1PE",
+    "2 Peter": "2PE", "1 John": "1JN", "2 John": "2JN", "3 John": "3JN", "Jude": "JUD", "Revelation": "REV"
+}
+
+def parse_reference(ref):
+    """Parse a Bible reference into book, chapter, and verses (if present)."""
+    # Match patterns like 'Genesis 1', 'Matthew 2:1-12', or 'Psalms 1:1-6'
+    pattern = r'^([\w\s]+)\s(\d+)(?::(\d+(?:-\d+)?))?$'
+    match = re.match(pattern, ref.strip())
+    if not match:
+        return None, None, None
+    book, chapter, verses = match.groups()
+    return book, chapter, verses
+
+
+
 def tobool(bool):
     bool_mapping = {
         "true": True,
@@ -50,6 +80,8 @@ def convert_verses(verses, site, version, embed):
             newstring += convert_to_bible_link_bg(line, version, embed) + "\n"
         elif site == "LSB":
             newstring += convert_to_bible_link_lsb(line, embed) + "\n"
+        elif site == "ebible":
+            newstring += convert_to_bible_link_webus(line) + "\n"
     return newstring
 
 def convert_to_bible_link_yv(reference, version="web", embed=True):
@@ -70,24 +102,6 @@ def convert_to_bible_link_yv(reference, version="web", embed=True):
         raise ValueError("Invalid format")
 
     book_number, book_name, chapter, verses = match.groups()
-
-    # Bible book abbreviations
-    book_abbreviations = {
-        "Genesis": "GEN", "Exodus": "EXO", "Leviticus": "LEV", "Numbers": "NUM", "Deuteronomy": "DEU",
-        "Joshua": "JOS", "Judges": "JDG", "Ruth": "RUT", "1 Samuel": "1SA", "2 Samuel": "2SA",
-        "1 Kings": "1KI", "2 Kings": "2KI", "1 Chronicles": "1CH", "2 Chronicles": "2CH",
-        "Ezra": "EZR", "Nehemiah": "NEH", "Esther": "EST", "Job": "JOB", "Psalm": "PSA", "Psalms": "PSA",
-        "Proverbs": "PRO", "Ecclesiastes": "ECC", "Song of Solomon": "SNG", "Isaiah": "ISA",
-        "Jeremiah": "JER", "Lamentations": "LAM", "Ezekiel": "EZK", "Daniel": "DAN",
-        "Hosea": "HOS", "Joel": "JOL", "Amos": "AMO", "Obadiah": "OBA", "Jonah": "JON",
-        "Micah": "MIC", "Nahum": "NAM", "Habakkuk": "HAB", "Zephaniah": "ZEP", "Haggai": "HAG",
-        "Zechariah": "ZEC", "Malachi": "MAL", "Matthew": "MAT", "Mark": "MRK", "Luke": "LUK",
-        "John": "JHN", "Acts": "ACT", "Romans": "ROM", "1 Corinthians": "1CO", "2 Corinthians": "2CO",
-        "Galatians": "GAL", "Ephesians": "EPH", "Philippians": "PHP", "Colossians": "COL",
-        "1 Thessalonians": "1TH", "2 Thessalonians": "2TH", "1 Timothy": "1TI", "2 Timothy": "2TI",
-        "Titus": "TIT", "Philemon": "PHM", "Hebrews": "HEB", "James": "JAS", "1 Peter": "1PE",
-        "2 Peter": "2PE", "1 John": "1JN", "2 John": "2JN", "3 John": "3JN", "Jude": "JUD", "Revelation": "REV"
-    }
 
     special_books = {"Samuel", "Kings", "Chronicles", "Corinthians", "Thessalonians", "Timothy", "Peter", "John"}
     book_name = book_name.strip()
@@ -120,6 +134,28 @@ def convert_to_bible_link_bg(reference, version="web", embed=True):
         return f"[{reference}](https://www.biblegateway.com/passage/?search={reference.replace(' ', '+').replace(':', '%3A')}&version={version})"
     else:
         return f"[{reference}](<https://www.biblegateway.com/passage/?search={reference.replace(' ', '+').replace(':', '%3A')}&version={version}>)"
+
+def convert_to_bible_link_webus(reference, local=False):
+    """Generate a Markdown link for a Bible reference."""
+    book, chapter, verses = parse_reference(reference)
+    if not book or book not in book_abbreviations:
+        return f"Invalid reference: {reference}"
+
+    # Get the book abbreviation
+    abbr = book_abbreviations[book]
+    # Format chapter as two digits
+    chapter = int(chapter)
+    if local:
+        folder = folder
+    else :
+        folder = "https://ebible.org/engwebu/"
+    if abbr == 'PSA':
+        filename = f"{folder}{abbr}{chapter:03d}.htm"
+    else:
+        filename = f"{folder}{abbr}{chapter:02d}.htm"
+    # Use the full reference as the link text
+    link_text = reference
+    return f"[{link_text}]({filename})"
 
 def sendplan(hook):
     # Extract the first hook (modify as needed if there are multiple)
