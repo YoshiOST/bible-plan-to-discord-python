@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bible Plan Configurator</title>
+  <meta property="og:title" content="Bible Plan Configurator" />
+  <meta property="og:image" content="https://res.cloudinary.com/dnut6ihl8/image/upload/t_eco-webp/new_discord_b_m4ky4z.png" />
+  <meta property="og:description" content="" />
+  <meta name="theme-color" content="#ceffc6">
+  <link rel="shortcut icon" href="/img/favicon-sm.ico">
+  <!-- You MUST include jQuery before Fomantic -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
+  <script src="../semantic/dist/semantic.min.js"></script>
+  <script src="/js/menu.js"></script>
+  <link rel="stylesheet" type="text/css" href="/font/stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+  <noscript>
+    <link rel="stylesheet" type="text/css" href="/css/noscript.css">
+  </noscript>
+  <link rel="stylesheet" type="text/css" href="">
+</head>
+<body style="background-image: url(img/yoshiost-bg.png) ; background-repeat: ; background-size:  ; background-color: #c6e9af">
+  <div class="superheader">
+    <div class="ui top borderless stackable nav menu">
+      <div id="navcontainer" class="ui container">
+        <div class="item">
+          <a href="index.html">
+            <img alt="YoshiOST headshot and link to home page"class="grower" id="top-logo" src="https://res.cloudinary.com/dnut6ihl8/image/upload/c_thumb,w_200,g_face/t_eco-webp/new_discord_b_m4ky4z.png">
+          </a>
+          <div class="middle">
+          </div>
+          <div class="mobile right menu">
+            <label class="mobile expander" for='menu' tabindex="0">
+            <i class="hamburger icon"></i>
+            </label>
+            <input id='menu' type='checkbox' />
+          </div>
+        </div>
+        <div class="right borderless menu" id="togglemenu">
+          <div class="ui simple dropdown item">
+            Music
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a href="/videogames.html"><div class="hl item">Video Games</div></a>
+              <a href="/yoshiost.html"><div class="hl item">YoshiOST</div></a>
+              <a href="/osbooter.html"><div class="hl item">OSBooter</div></a>
+              <a href="/music-media.html"><div class="hl item">Media</div></a>
+              <a href="/license.html"><div class="hl item">Licensing</div></a>
+              
+            </div>
+          </div>
+          <div class="ui simple dropdown item">
+            Code
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a href="/tv-text-gen.html"><div class="hl item">TV TSV Generator</div></a>
+              <a href="/mn-cleaner.html"><div class="hl item">Meteonook 🌟 Extractor</div></a>
+              <a href="/planconfig.html"><div class="hl item">Bible Plan Config</div></a>
+              <a href="https://chrome.google.com/webstore/detail/bible-shortcuts/fdfkokekebedfliplbofjnejpjbohlkk"><div class="hl item">Bible Shortcuts</div></a>
+              <a href="https://github.com/OSBooter/Tracktion-WF-Macros"><div class="hl item">Waveform Macros</div></a>
+              <a href="https://sites.google.com/view/mbcmaps/mbc-maps"><div class="hl item">MBC OpenLayers</div></a>
+              <a href="https://sites.google.com/view/fishingplus/fishingplus"><div class="hl item">Fishing Plus</div></a>
+              <a href="/secommands.html"><div class="hl item">SE Commands</div></a>
+            </div>
+          </div>
+          <div class="ui simple dropdown item">
+            Design
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a href="/twitter-designs.html"><div class="hl item">Twitter</div></a>
+              <a href="/discord-designs.html"><div class="hl item">Discord</div></a>
+              <a href="https://shop.yoshiost.com/"><div class="hl item">Merch</div></a>
+              <a href="/website-designs.html"><div class="hl item">Websites</div></a>
+            </div>
+          </div>
+          <a href="/posts/post" class="item">
+            Blog
+          </a>
+          <a class="item" href="https://twitter.com/getYoshiOST" aria-label="twitter link">
+            <i class="twitter icon"></i>
+          </a>
+          <a class="item" href="https://www.twitch.tv/yoshiost" aria-label="twitch link">
+            <i class="twitch icon"></i>
+          </a>
+          <a class="item" href="https://www.youtube.com/@yoshiost"  aria-label="youtube link">
+            <i class="youtube icon"></i>
+          </a>
+          <a class="item" href="https://www.instagram.com/yoshiost/" aria-label="instagram link">
+            <i class="instagram icon"></i>
+          </a>
+          <a class="item" href="https://www.speedrun.com/user/YoshiOST" aria-label="instagram link">
+            <i class="gamepad icon"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id=content class="ui container">
+    <p><strong><h1 class="ui center aligned header">Bible Plan Configurator</h1></strong></p>
+<div class="ui container">
+  <div class="ui segment">
+  <div class="ui fluid left icon input">
+    <input id="input-bot" type="text" placeholder="Discord Bot Name">
+    <i class="robot icon"></i>
+  </div>
+  <div class="ui fluid left icon input">
+    <input id="input-image" type="text" placeholder="Image Link">
+    <i class="image icon"></i>
+  </div>
+  <div class="ui fluid left icon input">
+    <input id="input-webhook" type="text" placeholder="Webhook URL">
+    <i class="chain icon"></i>
+  </div>
+  <div class="ui fluid left icon input">
+    <input id="input-csv" type="text" placeholder=".csv file">
+    <i class="scroll icon"></i>
+  </div>
+  <div class="ui calendar" id="standard_calendar">
+    <div class="ui fluid input left icon">
+      <i class="calendar icon"></i>
+      <input id="input-calendar" type="text" placeholder="Starting Date">
+    </div>
+  </div>
+  <div class="ui fluid selection dropdown">
+    <input id="input-site" type="hidden" name="Web Link">
+    <i class="dropdown icon"></i>
+    <div class="default text">Web Link</div>
+    <div class="scrollhint menu">
+      <div class="item" data-value="LSB">read.lsbible.org</div>
+      <div class="item" data-value="biblegateway ESV">www.biblegateway.com(ESV)</div>
+      <div class="item" data-value="biblegateway LSB">www.biblegateway.com(LSB)</div>
+      <div class="item" data-value="biblegateway WEB">www.biblegateway.com(WEB)</div>
+    </div>
+  </div>
+  <div class="ui compact segment">
+    <div class="ui checkbox">
+      <input id="input-embed" type="checkbox">
+      <label>Show Embedded Links?</label>
+    </div>
+  </div>
+  <div class="ui wrapping spaced buttons">
+    <button class="ui button" onclick = "downloadFile()">
+      Generate
+    </button>
+  </div>
+    <script>
+    const downloadFile = () => {
+      const link = document.createElement("a");
+      const botname = document.querySelector("#input-bot").value || 'Plan Bot';
+      const image = document.querySelector("#input-image").value || 'https://cdn.pixabay.com/photo/2022/02/20/09/43/animal-7024108_960_720.png';
+      const webhook = document.querySelector("#input-webhook").value || 'https://discord.com/api/webhooks/a/b';
+      const mywebhook = webhook.split("/");
+      const webhookId = mywebhook[5];
+      const webhookToken = mywebhook[6];
+      const site = document.querySelector("#input-site").value.match(/\S+/);
+      const version = document.querySelector("#input-site").value.match(/\S+$/);
+      const embed = document.querySelector("#input-embed").checked;
+      const csvfile = document.querySelector("#input-csv").value || 'plan.csv';
+      var calendar = new Date(document.querySelector("#input-site").value);
+      if (isNaN(calendar))
+      {
+        calendar = new Date();
+      }
+      const content = '{ "hooks" : ['
+      + '{'
+      + '"botname": "' + botname + '",'
+      + '"image": "' + image + '",'
+      + '"webhookId": "'+ webhookId + '",'
+      + '"webhookToken": "'+ webhookToken + '",'
+      + '"webhookURL": "'+ webhook + '",'
+      + '"csvfile": "'+ csvfile + '",'
+      + '"startdate": "'+ calendar.getTime() + '",'
+      + '"site": "'+ site + '",'
+      + '"version": "'+ version + '",'
+      + '"embed": "'+ embed
+      + '"}]'
+      + '}';
+      const file = new Blob([content],{type: 'application/json'});
+      console.log(calendar.getTime());
+      link.href = URL.createObjectURL(file);
+      link.download = "config.json";
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+    </script>
+  </div>
+</div>
+
+  </div>
+  <div id="footer">
+    <div class="">
+      <div class="ui vertical segment">
+        <div class="ui center aligned container">
+          <a class="item" href="https://twitter.com/getYoshiOST" aria-label="twitter link">
+            <i class="twitter icon"></i>
+          </a>
+          <a class="item" href="https://www.twitch.tv/yoshiost" aria-label="twitch link">
+            <i class="twitch icon"></i>
+          </a>
+          <a class="item" href="https://www.youtube.com/@yoshiost"  aria-label="youtube link">
+            <i class="youtube icon"></i>
+          </a>
+          <a class="item" href="https://www.instagram.com/yoshiost/" aria-label="instagram link">
+            <i class="instagram icon"></i>
+          </a>
+          <a class="item" href="https://www.speedrun.com/user/YoshiOST" aria-label="speedrun link">
+            <i class="gamepad icon" style="margin-right: 0px;"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js&#92;bible-plan-configurator.js"></script>
+  <script src="js/popup.js"></script>
+</body>
+</html>
