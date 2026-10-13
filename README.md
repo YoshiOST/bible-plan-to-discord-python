@@ -22,5 +22,7 @@ Setup a config at https://yoshiost.com/planconfig
 - if you need to simulate what happens please use ```python notify-plan.py test```
 - boom everyday you see the plan sent.
 
+[sample bible plan ](https://github.com/YoshiOST/bible-plan-to-discord-python/blob/master/oneyearbible.lxbp)
+sample config.json
 ## Contact
 https://www.twitch.tv/yoshiost
