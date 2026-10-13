@@ -300,8 +300,9 @@ def convert_to_bible_link_lux(reference):
 
 
 def convert_to_bible_link_yoshiost(reference, version="BSB"):
-    """Build a Yoshiost BSB link for a chapter, verse, or same-chapter verse range."""
-    if str(version).upper() != "BSB":
+    """Build a Yoshiost BSB or BLB link for a chapter, verse, or verse range."""
+    version = str(version).upper()
+    if version not in ("BSB", "BLB"):
         raise ValueError(f"Unsupported Yoshiost version: {version}")
     match = re.fullmatch(r"(.+?)\s+(\d+)(?::(\d+)(?:-(\d+))?)?", reference.strip())
     if not match:
@@ -311,7 +312,8 @@ def convert_to_bible_link_yoshiost(reference, version="BSB"):
     if book not in yoshiost_books:
         raise ValueError(f"Unknown Bible book for Yoshiost: {book}")
     book_id, slug = yoshiost_books[book]
-    url = f"https://bsb.yoshiost.com/chapters/bsb_bk{book_id:02d}_{slug}_{int(chapter)}"
+    version_prefix = version.lower()
+    url = f"https://{version_prefix}.yoshiost.com/chapters/{version_prefix}_bk{book_id:02d}_{slug}_{int(chapter)}"
     if verse_from is None:
         url += ".html"
     else:
