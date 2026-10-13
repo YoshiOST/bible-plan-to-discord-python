@@ -1,4 +1,6 @@
-# Get Started
+
+# Get Started with Bible Plan to Discord
+this is the python version
 ## Dependencies
 
 * **Python 3** — Required to run the script.
@@ -22,7 +24,11 @@ Setup a config at https://yoshiost.com/planconfig
 - if you need to simulate what happens please use ```python notify-plan.py test```
 - boom everyday you see the plan sent.
 
-[sample bible plan ](https://github.com/YoshiOST/bible-plan-to-discord-python/blob/master/oneyearbible.lxbp)
-sample config.json
+[sample bible plan](https://github.com/YoshiOST/bible-plan-to-discord-python/blob/master/oneyearbible.lxbp)  
+
+[lxbp format spec](https://www.luxbible.app/resources/lxbp)  
+
+[sample config.json](https://github.com/YoshiOST/bible-plan-to-discord-python/blob/master/config.json)  
+
 ## Contact
 https://www.twitch.tv/yoshiost
