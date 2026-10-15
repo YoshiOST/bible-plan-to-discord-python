@@ -17,9 +17,9 @@ All other dependencies (`json`, `csv`, `datetime`, `http.client`, `argparse`, `m
 ## How does it send everyday?
 Setup a config at https://yoshiost.com/planconfig
 - you will need to get a webhook from the discord/message platform's channel where it will post.
-- use a chron like program to run the run.sh
-  - windows has taskscheduler
-  - linux cron
+- use a cron like program to run the run.sh
+  - [windows has taskscheduler ](https://www.youtube.com/watch?v=DVrWfuKcDyM)
+  - [linux cron](https://www.youtube.com/watch?v=7cbP7fzn0D8)
 - alternatively running ```python notify-plan.py send```
 - if you need to simulate what happens please use ```python notify-plan.py test```
 - boom everyday you see the plan sent.
